@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApp">
         <service
-            android:name=".Services.Bot"
+            android:name=".Services.Bot3"
             android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".Services.Bot2"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".Services.Bot"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".Activities.MainActivity"

@@ -4,9 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-public class Bot extends Service {
-    public Bot() {
-
+public class Bot3 extends Service {
+    public Bot3() {
     }
 
     @Override
