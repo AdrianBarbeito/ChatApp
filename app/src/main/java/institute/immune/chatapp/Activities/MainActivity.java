@@ -1,8 +1,10 @@
-package institute.immune.chatapp;
+package institute.immune.chatapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import institute.immune.chatapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
