@@ -7,17 +7,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
     private static final String script = "CREATE TABLE 'user' (_id INTEGER PRIMARY KEY AUTOINCREMENT, 'name' TEXT, 'mail' TEXT)";
     private SQLiteDatabase db;
 
-    public MyOpenHelper(@Nullable Context context) {
-        super(context, "users.sqlite", null, 1);
+    public MyOpenHelper(Context context) {
+        super(context, "", null, 1);
         db = this.getWritableDatabase();
     }
 
@@ -45,21 +42,21 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         db.delete("user","_id = ?", args);
     }
 
-    public ArrayList<Usuario> obtenerUsuarios(){
-        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+    public ArrayList<User> obtenerUsuarios(){
+        ArrayList<User> userList = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM user", null);
         if (cursor.getCount() > 0){
             cursor.moveToFirst();
             do {
-                @SuppressLint("Range") Usuario usuario = new Usuario(cursor.getInt(cursor.getColumnIndex("_id")),
+                @SuppressLint("Range") User user = new User(cursor.getInt(cursor.getColumnIndex("_id")),
                         cursor.getString(cursor.getColumnIndex("name")),
                         cursor.getString(cursor.getColumnIndex("mail")));
-                listaUsuarios.add(usuario);
+                userList.add(user);
 
             } while (cursor.moveToNext());
         }
         cursor.close();
 
-        return listaUsuarios;
+        return userList;
     }
 }

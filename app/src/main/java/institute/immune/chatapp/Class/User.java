@@ -1,12 +1,13 @@
 package institute.immune.chatapp.Class;
 
-public class Usuario {
+public class User {
     private Integer id;
     private String name;
     private String mail;
+    private String category;
     private Boolean online;
 
-    Usuario(Integer id, String name, String mail){
+    User(Integer id, String name, String mail){
         this.id = id;
         this.name = name;
         this.mail = mail;
@@ -36,4 +37,12 @@ public class Usuario {
     public void setMail(String mail) {
         this.mail = mail;
     }
+
+    public String getCategory() { return category; }
+
+    public void setCategory(String category) { this.category = category; }
+
+    public Boolean getOnline() { return online; }
+
+    public void setOnline(Boolean online) { this.online = online; }
 }
