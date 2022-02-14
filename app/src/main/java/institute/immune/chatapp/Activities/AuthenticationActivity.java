@@ -18,13 +18,19 @@ import java.net.URL;
 import institute.immune.chatapp.Class.MyOpenHelper;
 import institute.immune.chatapp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class AuthenticationActivity extends AppCompatActivity {
     private MyOpenHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_authentication);
+
+        db = new MyOpenHelper(this);
+        bindings();
+    }
+
+    private void bindings() {
     }
 
     /**

@@ -14,7 +14,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     private SQLiteDatabase db;
 
     public MyOpenHelper(Context context) {
-        super(context, "", null, 1);
+        super(context, "usersDb.SQLite", null, 1);
         db = this.getWritableDatabase();
     }
 
