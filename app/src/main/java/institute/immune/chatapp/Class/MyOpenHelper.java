@@ -60,6 +60,28 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         return userList;
     }
 
+    public ArrayList<User> searchByCategory(String category){
+        ArrayList<User> userList = new ArrayList<>();
+        String[] args = new String[]{
+                category
+        };
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE 'category' == ?", args);
+
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do {
+                @SuppressLint("Range") User user = new User(cursor.getInt(cursor.getColumnIndex("_id")),
+                        cursor.getString(cursor.getColumnIndex("nickName")),
+                        cursor.getString(cursor.getColumnIndex("mail")));
+                userList.add(user);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return userList;
+    }
+
     public void replaceName(int id, String nickName){
         ContentValues cv = new ContentValues();
         String[] args = new String[]{
