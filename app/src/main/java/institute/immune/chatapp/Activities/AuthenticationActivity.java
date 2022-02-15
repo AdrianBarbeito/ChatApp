@@ -2,8 +2,10 @@ package institute.immune.chatapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,10 +30,24 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         db = new MyOpenHelper(this);
         bindings();
+        setListeners();
+        new HTTPReqTask().execute();
     }
 
     private void bindings() {
     }
+
+    private void setListeners() {
+    }
+
+
+    public View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), ConsultaActivity.class);
+            startActivity(intent);
+        }
+    };
 
     /**
      * Conexión con API
@@ -66,18 +82,18 @@ public class AuthenticationActivity extends AppCompatActivity {
 
             return null;
         }
-    }
 
-    private void procesarJson(String line) throws JSONException {
-        JSONObject jsonObject = new JSONObject(line);
-        JSONArray jsonArray = jsonObject.getJSONArray("data");
-        int var = jsonArray.length() - 1;
-        while (var >= 0){
-            JSONObject usuario = jsonArray.getJSONObject(var);
-            String name = usuario.getString("first_name") + " " + usuario.getString("last_name");
-            String mail = usuario.getString("email");
-            db.crearUsuario(name, mail);
-            var--;
+        private void procesarJson(String line) throws JSONException {
+            JSONObject jsonObject = new JSONObject(line);
+            JSONArray jsonArray = jsonObject.getJSONArray("data");
+            int var = jsonArray.length() - 1;
+            while (var >= 0) {
+                JSONObject usuario = jsonArray.getJSONObject(var);
+                String name = usuario.getString("first_name") + " " + usuario.getString("last_name");
+                String mail = usuario.getString("email");
+                db.crearUsuario(name, mail);
+                var--;
+            }
         }
     }
 }

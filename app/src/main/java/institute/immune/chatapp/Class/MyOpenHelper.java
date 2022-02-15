@@ -42,7 +42,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         db.delete("user","_id = ?", args);
     }
 
-    public ArrayList<User> obtenerUsuarios(){
+    public ArrayList<User> showUsuarios(){
         ArrayList<User> userList = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM user", null);
         if (cursor.getCount() > 0){
@@ -58,5 +58,29 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return userList;
+    }
+
+    public void setName(String name){
+        ContentValues cv = new ContentValues();
+        cv.put("name", name);
+        db.insert("user", null, cv);
+    }
+
+    public void setMail(String mail){
+        ContentValues cv = new ContentValues();
+        cv.put("mail", mail);
+        db.insert("user", null, cv);
+    }
+
+    public void setCategory(String category){
+        ContentValues cv = new ContentValues();
+        cv.put("category", category);
+        db.replace("user", null, cv);
+    }
+
+    public void setOnline(Boolean online){
+        ContentValues cv = new ContentValues();
+        cv.put("online", online);
+        db.insert("user", null, cv);
     }
 }

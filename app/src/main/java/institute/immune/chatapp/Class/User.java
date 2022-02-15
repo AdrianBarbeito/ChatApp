@@ -1,10 +1,13 @@
 package institute.immune.chatapp.Class;
 
+import androidx.annotation.Nullable;
+
 public class User {
     private Integer id;
     private String name;
     private String mail;
-    private String category;
+    @Nullable
+    String category;
     private Boolean online;
 
     User(Integer id, String name, String mail){
