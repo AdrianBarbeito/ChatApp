@@ -13,13 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApp">
         <activity
+            android:name=".Activities.SearchActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".Activities.ConsultaActivity"
             android:exported="false" />
 
         <service
             android:name=".Services.Bot3"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"></service>
         <service
             android:name=".Services.Bot2"
             android:enabled="true"
@@ -30,7 +34,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".Activities.AuthenticationActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
