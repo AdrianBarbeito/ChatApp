@@ -75,24 +75,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:textAlignment="center"
         android:text="Login"
-        android:textColor="@color/colorPrimaryDark"
+
         android:textSize="15dp" />
 
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="196dp"
-        tools:layout_editor_absoluteY="138dp" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/faceButton"
+        android:layout_width="390dp"
+        android:layout_height="62dp"
+        android:drawableStart="@drawable/face"
+        android:drawablePadding="5dp"
+        android:text="@string/facebook"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="56dp" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="196dp"
-        tools:layout_editor_absoluteY="72dp" />
+        android:id="@+id/googleButton"
+        android:layout_width="390dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/google"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/faceButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

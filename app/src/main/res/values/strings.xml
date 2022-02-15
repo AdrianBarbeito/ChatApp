@@ -2,4 +2,6 @@
     <string name="app_name">ChatApp</string>
     <string name="signIn">Sign In</string>
     <string name="accountQuestion">Already have an account?</string>
+    <string name="facebook">Join through facebook</string>
+    <string name="google">Join trough Google</string>
 </resources>
