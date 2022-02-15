@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
-    private static final String script = "CREATE TABLE 'user' (_id INTEGER PRIMARY KEY AUTOINCREMENT, 'name' TEXT, 'mail' TEXT)";
+    private static final String script = "CREATE TABLE 'user' (_id INTEGER PRIMARY KEY AUTOINCREMENT, 'nickName' TEXT UNIQUE NOT NULL, 'mail' TEXT UNIQUE NOT NULL, 'category' TEXT, 'online' INTEGER)";
     private SQLiteDatabase db;
 
     public MyOpenHelper(Context context) {
@@ -28,9 +28,9 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     }
 
-    public void crearUsuario(String nombre, String mail){
+    public void crearUsuario(String nickName, String mail){
         ContentValues cv = new ContentValues();
-        cv.put("name", nombre);
+        cv.put("nickName", nickName);
         cv.put("mail", mail);
         db.insert("user", null, cv);
     }
@@ -49,7 +49,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
             do {
                 @SuppressLint("Range") User user = new User(cursor.getInt(cursor.getColumnIndex("_id")),
-                        cursor.getString(cursor.getColumnIndex("name")),
+                        cursor.getString(cursor.getColumnIndex("nickName")),
                         cursor.getString(cursor.getColumnIndex("mail")));
                 userList.add(user);
 
@@ -60,27 +60,44 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         return userList;
     }
 
-    public void setName(String name){
+    public void replaceName(int id, String nickName){
         ContentValues cv = new ContentValues();
-        cv.put("name", name);
-        db.insert("user", null, cv);
+        String[] args = new String[]{
+                String.valueOf(id)
+        };
+        cv.put("nickName", nickName);
+
+        db.update("user", cv, "_id = ?", args);
     }
 
-    public void setMail(String mail){
+    public void replaceMail(int id, String mail){
         ContentValues cv = new ContentValues();
+        String[] args = new String[]{
+                String.valueOf(id)
+        };
         cv.put("mail", mail);
-        db.insert("user", null, cv);
+
+        db.update("user", cv, "_id = ?", args);
     }
 
-    public void setCategory(String category){
+    public void replaceCategory(int id, String category){
         ContentValues cv = new ContentValues();
+        String[] args = new String[]{
+                String.valueOf(id)
+        };
         cv.put("category", category);
-        db.replace("user", null, cv);
+
+        db.update("user", cv, "_id = ?", args);
     }
 
-    public void setOnline(Boolean online){
+    public void replaceOnline(int id, Boolean online){
         ContentValues cv = new ContentValues();
-        cv.put("online", online);
-        db.insert("user", null, cv);
+        String[] args = new String[]{
+                String.valueOf(id)
+        };
+        if (online){ cv.put("online", 1); }
+        else { cv.put("online", 0); }
+
+        db.update("user", cv, "_id = ?", args);
     }
 }

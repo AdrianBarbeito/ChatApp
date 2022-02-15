@@ -23,7 +23,7 @@ public class ConsultaActivity extends AppCompatActivity {
 
         bindings();
         listaUsuarios.setMovementMethod(new ScrollingMovementMethod());
-        showUsuarios(db.showUsuarios());
+        mostrarUsuarios(db.showUsuarios());
     }
 
     private void bindings() {
@@ -32,7 +32,7 @@ public class ConsultaActivity extends AppCompatActivity {
     }
 
 
-    private void showUsuarios(ArrayList<User> array){
+    private void mostrarUsuarios(ArrayList<User> array){
         String usuarios = "";
         for (User user : array){
             usuarios += user.getId().toString() + " " + user.getName() + " " + user.getMail() + "\n";

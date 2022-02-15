@@ -6,8 +6,7 @@ public class User {
     private Integer id;
     private String name;
     private String mail;
-    @Nullable
-    String category;
+    private String category;
     private Boolean online;
 
     User(Integer id, String name, String mail){

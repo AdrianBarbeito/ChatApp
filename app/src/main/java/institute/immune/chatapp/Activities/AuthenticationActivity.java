@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +23,7 @@ import institute.immune.chatapp.R;
 
 public class AuthenticationActivity extends AppCompatActivity {
     private MyOpenHelper db;
+    private Button consultaBt, apiBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,23 +33,34 @@ public class AuthenticationActivity extends AppCompatActivity {
         db = new MyOpenHelper(this);
         bindings();
         setListeners();
-        new HTTPReqTask().execute();
     }
 
     private void bindings() {
+        consultaBt = findViewById(R.id.consultaBt);
+        apiBt = findViewById(R.id.apiBt);
     }
 
     private void setListeners() {
+        consultaBt.setOnClickListener(consultaListener);
+        apiBt.setOnClickListener(apiListener);
     }
 
 
-    public View.OnClickListener listener = new View.OnClickListener() {
+    public View.OnClickListener consultaListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(view.getContext(), ConsultaActivity.class);
             startActivity(intent);
         }
     };
+
+    public View.OnClickListener apiListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            new HTTPReqTask().execute();
+        }
+    };
+
 
     /**
      * Conexión con API
@@ -89,7 +102,7 @@ public class AuthenticationActivity extends AppCompatActivity {
             int var = jsonArray.length() - 1;
             while (var >= 0) {
                 JSONObject usuario = jsonArray.getJSONObject(var);
-                String name = usuario.getString("first_name") + " " + usuario.getString("last_name");
+                String name = usuario.getString("first_name") + usuario.getString("last_name");
                 String mail = usuario.getString("email");
                 db.crearUsuario(name, mail);
                 var--;
