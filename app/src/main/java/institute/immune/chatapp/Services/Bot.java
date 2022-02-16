@@ -6,6 +6,8 @@ import android.os.IBinder;
 
 import java.util.ArrayList;
 
+import institute.immune.chatapp.Activities.ChatActivity;
+import institute.immune.chatapp.Activities.ProfileActivity;
 import institute.immune.chatapp.Activities.SearchActivity;
 import institute.immune.chatapp.Class.MyOpenHelper;
 import institute.immune.chatapp.Class.User;
@@ -13,22 +15,30 @@ import institute.immune.chatapp.Class.User;
 public class Bot extends Service {
     private MyOpenHelper db;
     User bot;
-    private static SearchActivity listener;
+    private static SearchActivity listenerCategory;
+    private static ChatActivity listenerChat;
     public Bot() {
     }
     @Override
     public void onCreate() {
         super.onCreate();
         db = new MyOpenHelper(this);
-        randomUser();
+        bot = randomUser();
     }
     public User randomUser(){
-        ArrayList<User> userList =  db.searchByCategory("Sport");
+        ArrayList<User> userList =  db.searchByCategory("");
+        System.out.println(userList);
         return userList.get((int)Math.round( Math.random() * userList.size()));
     }
-
     public static void setupdateListener(SearchActivity ma){
-        listener = ma;
+        listenerCategory = ma;
+    }
+    public static void setupdateListener(ChatActivity chatActivity){
+        listenerChat = chatActivity;
+    }
+
+    public void startChat(){
+        listenerChat.setChat("hola");
     }
 
     @Override

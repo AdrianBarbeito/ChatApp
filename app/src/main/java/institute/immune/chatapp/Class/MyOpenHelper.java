@@ -132,4 +132,22 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
         db.update("user", cv, "_id = ?", args);
     }
+
+    @SuppressLint("Range")
+    public void RandomDb(){
+        Cursor cursor = db.rawQuery("SELECT * FROM user", null);
+        String[] categories = new String[]{
+                "sport",
+                "movies",
+                "politic"
+        };
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do {
+                replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), categories[(int) Math.round( Math.random() * categories.length)]);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+    }
 }
