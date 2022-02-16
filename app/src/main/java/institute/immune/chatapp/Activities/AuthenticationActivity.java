@@ -43,6 +43,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     private void setListeners() {
         consultaBt.setOnClickListener(consultaListener);
         apiBt.setOnClickListener(apiListener);
+
     }
 
 

@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import institute.immune.chatapp.Activities.MainActivity;
 import institute.immune.chatapp.Activities.SearchActivity;
 import institute.immune.chatapp.Class.MyOpenHelper;
 import institute.immune.chatapp.Class.User;
@@ -36,8 +35,8 @@ public class Bot2 extends Service {
     }
     public void RandomUser(){
          //EL número se sustituira por el tamaño de la BBDD -1
-        bot2 = db.getUserById(Math.round( Math.random() * 10));
-        bot2.setCategory("Sport");
+        //bot2 = db.getUserById(Math.round( Math.random() * 10));
+        //bot2.setCategory("Sport");
     }
     public static void setupdateListener(SearchActivity ma){
         listener = ma;

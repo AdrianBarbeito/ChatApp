@@ -28,8 +28,8 @@ public class Bot3 extends Service {
     }
     public void RandomUser(){
         //EL número se sustituira por el tamaño de la BBDD -1
-        bot3 = db.getUserById(Math.round( Math.random() * 10));
-        bot3.setCategory("Sport");
+        //bot3 = db.getUserById(Math.round( Math.random() * 10));
+        //bot3.setCategory("Sport");
     }
     public static void setupdateListener(SearchActivity ma){
         listener = ma;
