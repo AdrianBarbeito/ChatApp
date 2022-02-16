@@ -35,7 +35,6 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         db = new MyOpenHelper(this);
 
-        db.updateDataBase();
         bindings();
         db.RandomDb();
         setListeners();

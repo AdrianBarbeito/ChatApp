@@ -28,10 +28,6 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }
 
-    public void updateDataBase(){
-        db.setVersion(1);
-    }
-
     public void crearUsuario(String nickName, String mail, String password){
         ContentValues cv = new ContentValues();
         cv.put("nickName", nickName);
@@ -57,7 +53,8 @@ public class MyOpenHelper extends SQLiteOpenHelper {
                 @SuppressLint("Range") User user = new User(cursor.getInt(cursor.getColumnIndex("_id")),
                         cursor.getString(cursor.getColumnIndex("nickName")),
                         cursor.getString(cursor.getColumnIndex("mail")),
-                        cursor.getString(cursor.getColumnIndex("password")));
+                        cursor.getString(cursor.getColumnIndex("password")),
+                        cursor.getString(cursor.getColumnIndex("category")));
                 userList.add(user);
 
             } while (cursor.moveToNext());
@@ -152,7 +149,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         if (cursor.getCount() > 0){
             cursor.moveToFirst();
             do {
-                replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), categories[(int) Math.round( Math.random() * categories.length)-1]);
+                replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), categories[(int) Math.round( Math.random() * (categories.length -1))]);
 
             } while (cursor.moveToNext());
         }

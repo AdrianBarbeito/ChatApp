@@ -17,6 +17,14 @@ public class User {
         this.password = password;
         this.online = false;
     }
+    User(Integer id, String name, String mail, String password, String category){
+        this.id = id;
+        this.name = name;
+        this.mail = mail;
+        this.password = password;
+        this.category = category;
+        this.online = false;
+    }
 
     public Integer getId() {
         return id;
