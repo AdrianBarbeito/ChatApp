@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import java.util.ArrayList;
+
 import institute.immune.chatapp.Activities.SearchActivity;
 import institute.immune.chatapp.Class.MyOpenHelper;
 import institute.immune.chatapp.Class.User;
@@ -15,27 +17,24 @@ public class Bot extends Service {
     public Bot() {
     }
     @Override
-    public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-    @Override
     public void onCreate() {
         super.onCreate();
         db = new MyOpenHelper(this);
-        RandomizeDB();
+        randomUser();
     }
-    public void RandomizeDB(){
-        //EL número se sustituira por el tamaño de la BBDD -1
-        //bot = db.getUserById(Math.round( Math.random() * 10)); //cambiar a category
-        bot.setCategory("Sport");
-        //bot = db.searchByCategory("Sport"); //pasarlo a array
+    public User randomUser(){
+        ArrayList<User> userList =  db.searchByCategory("Sport");
+        return userList.get((int)Math.round( Math.random() * userList.size()));
     }
-    public void SelectBot(){
 
-    }
     public static void setupdateListener(SearchActivity ma){
         listener = ma;
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
 ////
@@ -43,4 +42,3 @@ public class Bot extends Service {
 ////
         ////
 
-//Decier a mario que haga el xml del perfil

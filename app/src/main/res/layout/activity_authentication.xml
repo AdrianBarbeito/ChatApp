@@ -13,13 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
-        android:background="@color/white"
+        android:layout_marginTop="100dp"
+        android:background="@color/colorPrimaryDark"
         android:drawableStart="@drawable/facebook"
-        android:drawablePadding="-50dp"
+        android:drawablePadding="5dp"
         android:text="@string/facebook"
         android:textAlignment="center"
-
+        android:enabled="false"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -32,11 +32,12 @@
         android:drawableStart="@drawable/google"
         android:drawablePadding="5dp"
         android:text="@string/google"
-        android:textColor="@color/white"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:enabled="false"
+         />
 
     <EditText
-        android:id="@+id/nickNameInput"
+        android:id="@+id/userInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/googleBt"
@@ -45,20 +46,7 @@
         android:backgroundTint="@color/white"
         android:drawableStart="@drawable/person_24"
         android:drawablePadding="5dp"
-        android:hint="@string/nickName"
-        android:inputType="textPersonName"
-        android:padding="15dp" />
-
-    <EditText
-        android:id="@+id/mailInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/nickNameInput"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/border_text"
-        android:backgroundTint="@color/white"
-        android:drawableStart="@drawable/email"
-        android:drawablePadding="5dp"
+        android:ems="10"
         android:hint="@string/mail"
         android:inputType="textPersonName"
         android:padding="15dp" />
@@ -67,12 +55,13 @@
         android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mailInput"
+        app:layout_constraintTop_toBottomOf="@id/userInput"
         android:layout_marginTop="15dp"
         android:background="@drawable/border_text"
         android:backgroundTint="@color/white"
         android:drawableStart="@drawable/lock_24"
         android:drawablePadding="5dp"
+        android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="15dp" />
@@ -85,7 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTint="#7158E2"
         app:cornerRadius="50dp"
         android:text="@string/login"
         android:textAlignment="center"
@@ -115,6 +104,9 @@
         android:text="@string/signIn"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="15dp" />
+
+
+
 
     <Button
         android:id="@+id/consultaBt"
