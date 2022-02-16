@@ -27,7 +27,7 @@ public class Bot extends Service {
     }
     public void RandomizeDB(){
         //EL número se sustituira por el tamaño de la BBDD -1
-        bot = db.getUserById(Math.round( Math.random() * 10)); //cambiar a category
+        //bot = db.getUserById(Math.round( Math.random() * 10)); //cambiar a category
         bot.setCategory("Sport");
         //bot = db.searchByCategory("Sport"); //pasarlo a array
     }

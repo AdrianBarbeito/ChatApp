@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApp">
-
+        <activity
+            android:name=".Activities.Profile"
+            android:exported="false" />
         <activity
             android:name=".Activities.AuthenticationActivity"
             android:exported="true">
@@ -22,11 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activities.SearchActivity"
             android:exported="false" />
-
         <activity
             android:name=".Activities.ConsultaActivity"
             android:exported="false" />
@@ -34,7 +34,7 @@
         <service
             android:name=".Services.Bot3"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
         <service
             android:name=".Services.Bot2"
             android:enabled="true"
@@ -43,7 +43,6 @@
             android:name=".Services.Bot"
             android:enabled="true"
             android:exported="true" />
-
     </application>
 
 </manifest>
