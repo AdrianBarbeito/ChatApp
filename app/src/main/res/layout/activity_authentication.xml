@@ -7,50 +7,59 @@
     android:background="@color/black"
     tools:context=".Activities.AuthenticationActivity">
 
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        android:text="@string/titulo"
+        android:textSize="40sp"
+        android:textColor="@color/white"/>
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/facebookBt"
-        android:layout_width="390dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
         android:background="@color/colorPrimaryDark"
         android:drawableStart="@drawable/facebook"
         android:drawablePadding="5dp"
         android:text="@string/facebook"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/facebookBt" />
+        android:enabled="false"
+        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/googleBt"
-        android:layout_width="390dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="108dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/facebookBt"
+        android:layout_marginTop="15dp"
         android:background="@color/colorPrimaryDark"
         android:drawableStart="@drawable/google"
         android:drawablePadding="5dp"
-        android:text="@string/facebook"
+        android:text="@string/google"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-
-        app:layout_constraintTop_toBottomOf="@id/facebookBt" />
+        android:enabled="false"
+         />
 
     <EditText
         android:id="@+id/userInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/googleBt"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/border_text"
         android:backgroundTint="@color/white"
         android:drawableStart="@drawable/person_24"
         android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="User"
+        android:hint="@string/mail"
         android:inputType="textPersonName"
         android:padding="15dp" />
 
@@ -79,7 +88,7 @@
         android:layout_marginTop="50dp"
         android:backgroundTint="#7158E2"
         app:cornerRadius="50dp"
-        android:text="@string/signIn"
+        android:text="@string/login"
         android:textAlignment="center"
         android:textColor="@color/white" />
 
@@ -91,7 +100,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
-        android:text="@string/accountQuestion"
+        android:text="@string/createAccount"
         android:textAlignment="center"
         android:textColor="@color/white" />
 
@@ -104,7 +113,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textAlignment="center"
-        android:text="@string/login"
+        android:text="@string/signIn"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="15dp" />
 
@@ -113,18 +122,38 @@
 
     <Button
         android:id="@+id/consultaBt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="89dp"
+        android:layout_height="53dp"
+        android:text="Consulta provisional"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Consulta provisional"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/apiBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="API"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="API"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/profileBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/SearchBt"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/apiBt" />
+
+    <Button
+        android:id="@+id/SearchBt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/consultaBt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

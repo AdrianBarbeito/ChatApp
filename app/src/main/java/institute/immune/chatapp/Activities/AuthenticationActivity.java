@@ -23,7 +23,7 @@ import institute.immune.chatapp.R;
 
 public class AuthenticationActivity extends AppCompatActivity {
     private MyOpenHelper db;
-    private Button consultaBt, apiBt;
+    private Button consultaBt, apiBt, profileBt, searchBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,14 @@ public class AuthenticationActivity extends AppCompatActivity {
     private void bindings() {
         consultaBt = findViewById(R.id.consultaBt);
         apiBt = findViewById(R.id.apiBt);
+        profileBt = findViewById(R.id.profileBt);
+        searchBt = findViewById(R.id.SearchBt);
     }
 
     private void setListeners() {
         consultaBt.setOnClickListener(consultaListener);
+        profileBt.setOnClickListener(consultaListener);
+        searchBt.setOnClickListener(consultaListener);
         apiBt.setOnClickListener(apiListener);
 
     }
@@ -50,7 +54,21 @@ public class AuthenticationActivity extends AppCompatActivity {
     public View.OnClickListener consultaListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(view.getContext(), ConsultaActivity.class);
+            Intent intent = null;
+            switch (view.getId()){
+
+                case R.id.SearchBt:
+                    intent = new Intent(view.getContext(), SearchActivity.class);
+                    break;
+
+                case R.id.profileBt:
+                    intent = new Intent(view.getContext(), ProfileActivity.class);
+                    break;
+
+                case R.id.consultaBt:
+                    intent = new Intent(view.getContext(), ConsultaActivity.class);
+                    break;
+            }
             startActivity(intent);
         }
     };

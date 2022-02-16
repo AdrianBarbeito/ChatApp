@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatApp">
         <activity
-            android:name=".Activities.Profile"
+            android:name=".Activities.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.AuthenticationActivity"

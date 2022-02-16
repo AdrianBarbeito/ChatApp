@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import institute.immune.chatapp.R;
 
-public class Profile extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

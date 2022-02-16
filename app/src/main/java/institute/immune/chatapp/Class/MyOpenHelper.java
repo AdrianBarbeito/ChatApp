@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
-    private static final String script = "CREATE TABLE 'user' (_id INTEGER PRIMARY KEY AUTOINCREMENT, 'nickName' TEXT UNIQUE NOT NULL, 'mail' TEXT UNIQUE NOT NULL, 'category' TEXT, 'online' INTEGER)";
+    private static final String script = "CREATE TABLE 'user' (_id INTEGER PRIMARY KEY AUTOINCREMENT, 'nickName' TEXT UNIQUE NOT NULL, 'mail' TEXT UNIQUE NOT NULL, 'password' TEXT NOT NULL, 'category' TEXT, 'online' INTEGER)";
     private SQLiteDatabase db;
 
     public MyOpenHelper(Context context) {
@@ -58,6 +58,16 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return userList;
+    }
+
+    public Integer countUsers(){
+        Cursor cursor = db.rawQuery("SELECT COUNT(_id) AS cuenta FROM 'user';", null);
+        cursor.moveToFirst();
+
+        @SuppressLint("Range") Integer count = cursor.getInt(cursor.getColumnIndex("cuenta"));
+        cursor.close();
+
+        return count;
     }
 
     public ArrayList<User> searchByCategory(String category){
