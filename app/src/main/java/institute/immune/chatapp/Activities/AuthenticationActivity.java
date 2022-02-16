@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.translation.ViewTranslationRequest;
 import android.widget.Button;
+import android.widget.EditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +24,7 @@ import institute.immune.chatapp.R;
 
 public class AuthenticationActivity extends AppCompatActivity {
     private MyOpenHelper db;
+    private EditText nickNameInput, mailInput, passwordinput;
     private Button credentialsBt, switchToBt;
     private Button consultaBt, apiBt, profileBt, searchBt;
 
@@ -41,6 +42,9 @@ public class AuthenticationActivity extends AppCompatActivity {
     }
 
     private void bindings() {
+        nickNameInput = findViewById(R.id.nickNameInput);
+        mailInput = findViewById(R.id.mailInput);
+        passwordinput = findViewById(R.id.passwordInput);
 
         credentialsBt = findViewById(R.id.credentialsBt);
         switchToBt = findViewById(R.id.switchToBt);
@@ -72,7 +76,16 @@ public class AuthenticationActivity extends AppCompatActivity {
     public View.OnClickListener switchToListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            if (switchToBt.getText().toString().equalsIgnoreCase("sign in")){
+                nickNameInput.setVisibility(View.VISIBLE);
+                credentialsBt.setText(R.string.signIn);
+                switchToBt.setText(R.string.login);
+            } else if (switchToBt.getText().toString().equalsIgnoreCase("login")){
+                nickNameInput.setVisibility(View.INVISIBLE);
+                nickNameInput.layout(0, 50, 0, 0);
+                credentialsBt.setText(R.string.login);
+                switchToBt.setText(R.string.signIn);
+            }
         }
     };
 
