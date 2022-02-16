@@ -7,41 +7,34 @@
     android:background="@color/colorPrimary"
     tools:context=".Activities.AuthenticationActivity">
 
-    <TextView
-        android:id="@+id/titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="15dp"
-        android:text="@string/titulo"
-        android:textColor="@color/white"
-        android:textSize="30dp"/>
 
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/facebookBt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titulo"
-        android:layout_marginTop="75dp"
-        android:drawableStart="@drawable/face"
+        android:layout_width="390dp"
+        android:layout_height="62dp"
+        android:background="@color/colorPrimaryDark"
+        android:drawableStart="@drawable/facebook"
         android:drawablePadding="5dp"
         android:text="@string/facebook"
         android:textAlignment="center"
-        android:padding="15dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="56dp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/googleBt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/facebookBt"
-        android:layout_marginTop="15dp"
-        android:text="@string/google"
+        android:layout_width="390dp"
+        android:layout_height="62dp"
+        android:background="@color/colorPrimaryDark"
+        android:drawableStart="@drawable/google"
+        android:drawablePadding="5dp"
+        android:text="@string/facebook"
         android:textAlignment="center"
-        android:padding="15dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="144dp" />
 
     <EditText
         android:id="@+id/userInput"
@@ -113,18 +106,7 @@
         android:textSize="15dp" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/faceButton"
-        android:layout_width="390dp"
-        android:layout_height="62dp"
-        android:drawableStart="@drawable/face"
-        android:drawablePadding="5dp"
-        android:text="@string/facebook"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="56dp" />
+
 
     <Button
         android:id="@+id/consultaBt"

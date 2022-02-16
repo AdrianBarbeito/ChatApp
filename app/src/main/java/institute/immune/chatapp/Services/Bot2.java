@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import institute.immune.chatapp.Activities.MainActivity;
 import institute.immune.chatapp.Activities.SearchActivity;
 import institute.immune.chatapp.Class.MyOpenHelper;
 import institute.immune.chatapp.Class.User;
