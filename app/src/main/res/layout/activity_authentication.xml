@@ -57,7 +57,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/border_text"
         android:backgroundTint="@color/white"
-
+        android:drawableStart="@drawable/email"
         android:drawablePadding="5dp"
         android:hint="@string/mail"
         android:inputType="textPersonName"
