@@ -32,10 +32,12 @@ public class AuthenticationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
+
         db = new MyOpenHelper(this);
 
         db.updateDataBase();
         bindings();
+        db.RandomDb();
         setListeners();
     }
 

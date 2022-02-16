@@ -152,7 +152,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         if (cursor.getCount() > 0){
             cursor.moveToFirst();
             do {
-                replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), categories[(int) Math.round( Math.random() * categories.length)]);
+                replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), categories[(int) Math.round( Math.random() * categories.length)-1]);
 
             } while (cursor.moveToNext());
         }
