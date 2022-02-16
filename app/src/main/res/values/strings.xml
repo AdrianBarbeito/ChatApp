@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">ChatApp</string>
+    <string name="app_name">Discuss now</string>
     <string name="signIn">Sign In</string>
     <string name="alreadyAccount">Already have an account?</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="facebook">Join through facebook</string>
     <string name="google">Join trough Google</string>
-    <string name="titulo">Discuss now</string>
     <string name="sport">Sports</string>
     <string name="politic">Politic</string>
     <string name="movies">Movies</string>
     <string name="mail">Email</string>
     <string name="createAccount">Create a new account?</string>
+    <string name="nickName">NickName</string>
 </resources>

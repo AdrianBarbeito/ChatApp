@@ -7,31 +7,19 @@
     android:background="@color/black"
     tools:context=".Activities.AuthenticationActivity">
 
-    <TextView
-        android:id="@+id/titulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="25dp"
-        android:text="@string/titulo"
-        android:textSize="40sp"
-        android:textColor="@color/white"/>
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/facebookBt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="100dp"
-        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="50dp"
+        android:background="@color/white"
         android:drawableStart="@drawable/facebook"
-        android:drawablePadding="5dp"
+        android:drawablePadding="-50dp"
         android:text="@string/facebook"
         android:textAlignment="center"
-        android:enabled="false"
+
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -44,12 +32,11 @@
         android:drawableStart="@drawable/google"
         android:drawablePadding="5dp"
         android:text="@string/google"
-        android:textAlignment="center"
-        android:enabled="false"
-         />
+        android:textColor="@color/white"
+        android:textAlignment="center" />
 
     <EditText
-        android:id="@+id/userInput"
+        android:id="@+id/nickNameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/googleBt"
@@ -58,7 +45,20 @@
         android:backgroundTint="@color/white"
         android:drawableStart="@drawable/person_24"
         android:drawablePadding="5dp"
-        android:ems="10"
+        android:hint="@string/nickName"
+        android:inputType="textPersonName"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/mailInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/nickNameInput"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/border_text"
+        android:backgroundTint="@color/white"
+
+        android:drawablePadding="5dp"
         android:hint="@string/mail"
         android:inputType="textPersonName"
         android:padding="15dp" />
@@ -67,13 +67,12 @@
         android:id="@+id/passwordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/userInput"
+        app:layout_constraintTop_toBottomOf="@id/mailInput"
         android:layout_marginTop="15dp"
         android:background="@drawable/border_text"
         android:backgroundTint="@color/white"
         android:drawableStart="@drawable/lock_24"
         android:drawablePadding="5dp"
-        android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="15dp" />
@@ -86,7 +85,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="50dp"
-        android:backgroundTint="#7158E2"
+        android:backgroundTint="@color/colorPrimaryDark"
         app:cornerRadius="50dp"
         android:text="@string/login"
         android:textAlignment="center"
@@ -116,9 +115,6 @@
         android:text="@string/signIn"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="15dp" />
-
-
-
 
     <Button
         android:id="@+id/consultaBt"

@@ -35,7 +35,7 @@ public class ConsultaActivity extends AppCompatActivity {
     private void mostrarUsuarios(ArrayList<User> array){
         String usuarios = "";
         for (User user : array){
-            usuarios += user.getId().toString() + " " + user.getName() + " " + user.getMail() + "\n";
+            usuarios += user.getId().toString() + " " + user.getName() + " " + "\n";
         }
         listaUsuarios.setText(usuarios);
     }
