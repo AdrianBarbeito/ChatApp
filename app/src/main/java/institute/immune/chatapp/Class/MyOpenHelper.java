@@ -10,11 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
+
     private static final String script = "CREATE TABLE 'user' (_id INTEGER PRIMARY KEY AUTOINCREMENT, 'nickName' TEXT UNIQUE NOT NULL, 'mail' TEXT UNIQUE NOT NULL, 'password' TEXT NOT NULL, 'category' TEXT, 'online' INTEGER)";
     private SQLiteDatabase db;
 
     public MyOpenHelper(Context context) {
-        super(context, "usersDb.SQLite", null, 1);
+        super(context, "DiscussDB.SQLite", null, 1);
         db = this.getWritableDatabase();
     }
 
@@ -25,13 +26,17 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
     }
 
-    public void crearUsuario(String nickName, String mail){
+    public void updateDataBase(){
+        db.setVersion(1);
+    }
+
+    public void crearUsuario(String nickName, String mail, String password){
         ContentValues cv = new ContentValues();
         cv.put("nickName", nickName);
         cv.put("mail", mail);
+        cv.put("password", password);
         db.insert("user", null, cv);
     }
 
@@ -42,6 +47,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         db.delete("user","_id = ?", args);
     }
 
+    @SuppressLint("Range")
     public ArrayList<User> showUsuarios(){
         ArrayList<User> userList = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM user", null);
@@ -50,7 +56,8 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             do {
                 @SuppressLint("Range") User user = new User(cursor.getInt(cursor.getColumnIndex("_id")),
                         cursor.getString(cursor.getColumnIndex("nickName")),
-                        cursor.getString(cursor.getColumnIndex("mail")));
+                        cursor.getString(cursor.getColumnIndex("mail")),
+                        cursor.getString(cursor.getColumnIndex("password")));
                 userList.add(user);
 
             } while (cursor.moveToNext());
@@ -82,7 +89,8 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             do {
                 @SuppressLint("Range") User user = new User(cursor.getInt(cursor.getColumnIndex("_id")),
                         cursor.getString(cursor.getColumnIndex("nickName")),
-                        cursor.getString(cursor.getColumnIndex("mail")));
+                        cursor.getString(cursor.getColumnIndex("mail")),
+                        cursor.getString(cursor.getColumnIndex("password")));
                 userList.add(user);
 
             } while (cursor.moveToNext());

@@ -6,13 +6,15 @@ public class User {
     private Integer id;
     private String name;
     private String mail;
+    private String password;
     private String category;
     private Boolean online;
 
-    User(Integer id, String name, String mail){
+    User(Integer id, String name, String mail, String password){
         this.id = id;
         this.name = name;
         this.mail = mail;
+        this.password = password;
         this.online = false;
     }
 
@@ -39,6 +41,10 @@ public class User {
     public void setMail(String mail) {
         this.mail = mail;
     }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     public String getCategory() { return category; }
 

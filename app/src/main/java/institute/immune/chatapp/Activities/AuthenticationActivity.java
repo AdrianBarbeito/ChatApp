@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.translation.ViewTranslationRequest;
 import android.widget.Button;
 
 import org.json.JSONArray;
@@ -23,6 +24,7 @@ import institute.immune.chatapp.R;
 
 public class AuthenticationActivity extends AppCompatActivity {
     private MyOpenHelper db;
+    private Button credentialsBt, switchToBt;
     private Button consultaBt, apiBt, profileBt, searchBt;
 
     @Override
@@ -31,11 +33,17 @@ public class AuthenticationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authentication);
 
         db = new MyOpenHelper(this);
+
+        db.updateDataBase();
         bindings();
         setListeners();
     }
 
     private void bindings() {
+
+        credentialsBt = findViewById(R.id.credentialsBt);
+        switchToBt = findViewById(R.id.switchToBt);
+
         consultaBt = findViewById(R.id.consultaBt);
         apiBt = findViewById(R.id.apiBt);
         profileBt = findViewById(R.id.profileBt);
@@ -43,12 +51,29 @@ public class AuthenticationActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
+        credentialsBt.setOnClickListener(credentialsListener);
+        switchToBt.setOnClickListener(switchToListener);
+
         consultaBt.setOnClickListener(consultaListener);
         profileBt.setOnClickListener(consultaListener);
         searchBt.setOnClickListener(consultaListener);
         apiBt.setOnClickListener(apiListener);
 
     }
+
+    public View.OnClickListener credentialsListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+
+    public View.OnClickListener switchToListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
 
 
     public View.OnClickListener consultaListener = new View.OnClickListener() {
@@ -123,7 +148,8 @@ public class AuthenticationActivity extends AppCompatActivity {
                 JSONObject usuario = jsonArray.getJSONObject(var);
                 String name = usuario.getString("first_name") + usuario.getString("last_name");
                 String mail = usuario.getString("email");
-                db.crearUsuario(name, mail);
+                String password = "12345";
+                db.crearUsuario(name, mail, password);
                 var--;
             }
         }

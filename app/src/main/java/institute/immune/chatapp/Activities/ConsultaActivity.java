@@ -31,10 +31,11 @@ public class ConsultaActivity extends AppCompatActivity {
         listaUsuarios = findViewById(R.id.listaUsuarios);
     }
 
+
     private void mostrarUsuarios(ArrayList<User> array){
         String usuarios = "";
         for (User user : array){
-            usuarios += user.getId().toString() + " " + user.getName() + " " + user.getMail() + " " + user.getCategory() + " " + "\n";
+            usuarios += user.getId().toString() + " " + user.getName() + " " + user.getMail() + " " + user.getPassword() + user.getCategory() + "\n";
         }
         listaUsuarios.setText(usuarios);
     }
