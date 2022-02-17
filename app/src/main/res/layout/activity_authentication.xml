@@ -42,7 +42,7 @@
         android:layout_marginTop="65dp"
         android:background="@drawable/border_text"
         android:backgroundTint="@color/white"
-        android:drawableStart="@drawable/person_24"
+        android:drawableStart="@drawable/person"
         android:drawablePadding="5dp"
         android:hint="@string/nickName"
         android:inputType="textPersonName"

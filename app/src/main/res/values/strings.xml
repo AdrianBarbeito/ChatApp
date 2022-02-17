@@ -12,4 +12,6 @@
     <string name="mail">Email</string>
     <string name="createAccount">Create a new account?</string>
     <string name="nickName">NickName</string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="confirm">Confirm</string>
 </resources>
