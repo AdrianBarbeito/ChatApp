@@ -76,7 +76,7 @@ public class AuthenticationActivity extends AppCompatActivity {
             if (credentialsBt.getText().toString().equalsIgnoreCase("sign in")){
                 try {
                     db.crearUsuario(nickNameInput.getText().toString(), mailInput.getText().toString(), passwordInput.getText().toString());
-                    Intent intent = new Intent(view.getContext(), SearchActivity.class);
+                    Intent intent = new Intent(view.getContext(), ConversationsActivity.class);
                     startActivity(intent);
                 } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
                     e.printStackTrace();
@@ -85,7 +85,7 @@ public class AuthenticationActivity extends AppCompatActivity {
             } else if (credentialsBt.getText().toString().equalsIgnoreCase("login")){
                 try {
                     if (db.comprobarLogin(mailInput.getText().toString(), passwordInput.getText().toString())){
-                        Intent intent = new Intent(view.getContext(), SearchActivity.class);
+                        Intent intent = new Intent(view.getContext(), ConversationsActivity.class);
                         startActivity(intent);
                     } else {
                         mensajeError.setText(R.string.errorLogin);

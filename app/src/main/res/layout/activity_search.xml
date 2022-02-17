@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
+        android:id="@+id/bottomAppBarSearch"
         style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,9 +67,10 @@
         tools:ignore="BottomAppBar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonMenuSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/bottomAppBar"
+        app:layout_anchor="@id/bottomAppBarSearch"
         app:srcCompat="@drawable/ic_circle_plus_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

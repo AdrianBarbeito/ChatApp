@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import institute.immune.chatapp.R;
 import institute.immune.chatapp.Services.Bot;
@@ -13,7 +18,11 @@ import institute.immune.chatapp.Services.Bot2;
 import institute.immune.chatapp.Services.Bot3;
 
 public class SearchActivity extends AppCompatActivity {
-    TextView politicBt, sportBt, movieBt;
+    private TextView politicBt, sportBt, movieBt;
+    private FloatingActionButton buttonMenuSearch;
+    private MenuItem chatMenu, profileMenu;
+    MenuItem.OnMenuItemClickListener onMenuClickListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +30,70 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         bindings();
         setListeners();
+    }
+
+    private void bindings(){
+        politicBt = findViewById(R.id.politicTview);
+        sportBt = findViewById(R.id.sportsTview);
+        movieBt = findViewById(R.id.moviesTview);
+        buttonMenuSearch = findViewById(R.id.buttonMenuSearch);
+    }
+
+    private void setListeners() {
+        buttonMenuSearch.setOnClickListener(menuCentralListener);
+        //chatMenu.setOnMenuItemClickListener(menuListener);
+        politicBt.setOnClickListener(listener);
+        sportBt.setOnClickListener(listener);
+        movieBt.setOnClickListener(listener);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_chatapp, menu);
+        return true;
+    }
+
+    public View.OnClickListener menuCentralListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+
+    public MenuItem.OnMenuItemClickListener menuListener = new MenuItem.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            Intent intent = null;
+            switch (menuItem.getItemId()){
+                case R.id.itemChat:
+                    intent = new Intent(menuItem.getActionView().getContext(), ChatActivity.class);
+                    break;
+
+                case R.id.itemPerson:
+                    intent = new Intent(menuItem.getActionView().getContext(), ProfileActivity.class);
+                    break;
+            }
+            startActivity(intent);
+            return false;
+        }
+    };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = null;
+        switch (item.getItemId()){
+            case R.id.itemChat:
+                intent = new Intent(this, ChatActivity.class);
+                break;
+
+            case R.id.itemPerson:
+                intent = new Intent(this, ProfileActivity.class);
+                break;
+        }
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
     }
 
     public View.OnClickListener listener = new View.OnClickListener() {
@@ -31,15 +104,4 @@ public class SearchActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
-
-    private void bindings(){
-        politicBt = findViewById(R.id.politicTview);
-        sportBt = findViewById(R.id.sportsTview);
-        movieBt = findViewById(R.id.moviesTview);
-    }
-    private void setListeners() {
-        politicBt.setOnClickListener(listener);
-        sportBt.setOnClickListener(listener);
-        movieBt.setOnClickListener(listener);
-    }
 }

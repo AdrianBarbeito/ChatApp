@@ -44,8 +44,4 @@ public class Bot extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }
-////
-        ////
-////
-        ////
 

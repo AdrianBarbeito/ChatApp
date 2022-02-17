@@ -1,9 +1,13 @@
 package institute.immune.chatapp.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -12,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import institute.immune.chatapp.R;
 import institute.immune.chatapp.Services.Bot;
@@ -87,5 +93,4 @@ public void selectBot(){
         messageFrame.addView(receivedmessage);
 
     }
-
 }

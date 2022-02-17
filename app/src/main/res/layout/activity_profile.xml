@@ -20,7 +20,7 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="16dp" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/profile_image"
         android:layout_width="155dp"
         android:layout_height="162dp"
