@@ -25,7 +25,7 @@ public class Bot extends Service {
         bot = randomUser();
     }
     public User randomUser(){
-        ArrayList<User> userList =  db.searchByCategory("sport");
+        ArrayList<User> userList =  db.searchByCategory("politic");
         System.out.println(userList);
         return userList.get((int)Math.round( Math.random() * (userList.size()-1)));
     }

@@ -40,7 +40,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         db = new MyOpenHelper(this);
         bindings();
         setListeners();
-        db.RandomDb();
+        //db.RandomDb();
     }
 
     private void bindings() {
