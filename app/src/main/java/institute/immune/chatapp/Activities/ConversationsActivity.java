@@ -21,6 +21,7 @@ public class ConversationsActivity extends AppCompatActivity {
     LinearLayout messageFrame;
     View converView;
     int id = 0;
+    int buttonId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public void OnClickView(View view){
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(view.getContext(), ChatActivity.class);
-            intent.putExtra("idText", view.getId() );
+            intent.putExtra("idText", buttonId);
             startActivity(intent);
         }
     };
@@ -43,7 +44,7 @@ public void OnClickView(View view){
         public void addconver(){
             converView = getLayoutInflater().inflate(R.layout.fragment_conversation, null, false);
             messageFrame.addView(converView);
-            int buttonId = findId();
+            buttonId = R.id.politicTview;
             converView.setId(buttonId);
             System.out.println(converView.getId());
             converView.setOnClickListener(listener);
