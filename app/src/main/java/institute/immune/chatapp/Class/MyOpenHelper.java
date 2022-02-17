@@ -7,6 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
@@ -28,19 +33,34 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }
 
-    public void crearUsuario(String nickName, String mail, String password){
+    public void crearUsuario(String nickName, String mail, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         ContentValues cv = new ContentValues();
+
+
         cv.put("nickName", nickName);
         cv.put("mail", mail);
-        cv.put("password", password);
+        cv.put("password", codificarPassword(password));
         db.insert("user", null, cv);
     }
 
-    public void borrarUsuario(int id){
-        String[] args = new String[]{
-                String.valueOf(id)
-        };
-        db.delete("user","_id = ?", args);
+    @SuppressLint("Range")
+    public Boolean comprobarLogin(String mail, String password) throws NoSuchAlgorithmException {
+
+            String[] args = new String[]{
+                    mail
+            };
+            Cursor cursor = db.rawQuery("SELECT password FROM user WHERE mail = ?", args);
+
+            if (cursor.getCount() > 0){
+                cursor.moveToFirst();
+                if (cursor.getString(cursor.getColumnIndex("password")).equals(codificarPassword(password))){
+                    return true;
+                } else{
+                    return false;
+                }
+            } else{
+                return false;
+            }
     }
 
     @SuppressLint("Range")
@@ -50,7 +70,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         if (cursor.getCount() > 0){
             cursor.moveToFirst();
             do {
-                @SuppressLint("Range") User user = new User(cursor.getInt(cursor.getColumnIndex("_id")),
+                User user = new User(cursor.getInt(cursor.getColumnIndex("_id")),
                         cursor.getString(cursor.getColumnIndex("nickName")),
                         cursor.getString(cursor.getColumnIndex("mail")),
                         cursor.getString(cursor.getColumnIndex("password")),
@@ -155,5 +175,13 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
+    }
+
+    public String codificarPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-1");
+        digest.reset();
+        digest.update(password.getBytes(StandardCharsets.UTF_8));
+
+        return String.format("%040x", new BigInteger(1, digest.digest()));
     }
 }

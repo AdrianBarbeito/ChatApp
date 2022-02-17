@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,15 +17,18 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 
 import institute.immune.chatapp.Class.MyOpenHelper;
 import institute.immune.chatapp.R;
 
 public class AuthenticationActivity extends AppCompatActivity {
     private MyOpenHelper db;
-    private EditText nickNameInput, mailInput, passwordinput;
+    private TextView accountQuestion, mensajeError;
+    private EditText nickNameInput, mailInput, passwordInput;
     private Button credentialsBt, switchToBt;
     private Button consultaBt, apiBt, profileBt, searchBt;
 
@@ -33,18 +37,18 @@ public class AuthenticationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
-
         db = new MyOpenHelper(this);
-
         bindings();
-        db.RandomDb();
         setListeners();
+        db.RandomDb();
     }
 
     private void bindings() {
+        accountQuestion = findViewById(R.id.accountQuestion);
+        mensajeError = findViewById(R.id.mensajeError);
         nickNameInput = findViewById(R.id.nickNameInput);
         mailInput = findViewById(R.id.mailInput);
-        passwordinput = findViewById(R.id.passwordInput);
+        passwordInput = findViewById(R.id.passwordInput);
 
         credentialsBt = findViewById(R.id.credentialsBt);
         switchToBt = findViewById(R.id.switchToBt);
@@ -69,7 +73,27 @@ public class AuthenticationActivity extends AppCompatActivity {
     public View.OnClickListener credentialsListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            if (credentialsBt.getText().toString().equalsIgnoreCase("sign in")){
+                try {
+                    db.crearUsuario(nickNameInput.getText().toString(), mailInput.getText().toString(), passwordInput.getText().toString());
+                    Intent intent = new Intent(view.getContext(), SearchActivity.class);
+                    startActivity(intent);
+                } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
 
+            } else if (credentialsBt.getText().toString().equalsIgnoreCase("login")){
+                try {
+                    if (db.comprobarLogin(mailInput.getText().toString(), passwordInput.getText().toString())){
+                        Intent intent = new Intent(view.getContext(), SearchActivity.class);
+                        startActivity(intent);
+                    } else {
+                        mensajeError.setText(R.string.errorLogin);
+                    }
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     };
 
@@ -80,15 +104,18 @@ public class AuthenticationActivity extends AppCompatActivity {
                 nickNameInput.setVisibility(View.VISIBLE);
                 credentialsBt.setText(R.string.signIn);
                 switchToBt.setText(R.string.login);
+                accountQuestion.setText(R.string.alreadyAccount);
+                mensajeError.clearComposingText();
+                mensajeError.setText("");
             } else if (switchToBt.getText().toString().equalsIgnoreCase("login")){
                 nickNameInput.setVisibility(View.INVISIBLE);
-                nickNameInput.layout(0, 50, 0, 0);
                 credentialsBt.setText(R.string.login);
                 switchToBt.setText(R.string.signIn);
+                accountQuestion.setText(R.string.createAccount);
+                mensajeError.setText("");
             }
         }
     };
-
 
     public View.OnClickListener consultaListener = new View.OnClickListener() {
         @Override
@@ -163,7 +190,11 @@ public class AuthenticationActivity extends AppCompatActivity {
                 String name = usuario.getString("first_name") + usuario.getString("last_name");
                 String mail = usuario.getString("email");
                 String password = "12345";
-                db.crearUsuario(name, mail, password);
+                try {
+                    db.crearUsuario(name, mail, password);
+                } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 var--;
             }
         }
