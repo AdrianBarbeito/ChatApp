@@ -15,7 +15,6 @@ import institute.immune.chatapp.Class.User;
 public class Bot extends Service {
     private MyOpenHelper db;
     User bot;
-    private static SearchActivity listenerCategory;
     private static ChatActivity listenerChat;
     public Bot() {
     }
@@ -26,13 +25,11 @@ public class Bot extends Service {
         bot = randomUser();
     }
     public User randomUser(){
-        ArrayList<User> userList =  db.searchByCategory("movies");
+        ArrayList<User> userList =  db.searchByCategory("sport");
         System.out.println(userList);
-        return userList.get((int)Math.round( Math.random() * userList.size()));
+        return userList.get((int)Math.round( Math.random() * (userList.size()-1)));
     }
-    public static void setupdateListener(SearchActivity ma){
-        listenerCategory = ma;
-    }
+
     public static void setupdateListener(ChatActivity chatActivity){
         listenerChat = chatActivity;
     }

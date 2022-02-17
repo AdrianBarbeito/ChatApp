@@ -42,15 +42,6 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/scrollChat"
-        android:layout_width="match_parent"
-        android:layout_height="610dp"
-        app:layout_constraintTop_toBottomOf="@id/infoUser"
-        app:layout_constraintBottom_toTopOf="@id/msgEtext">
-
-    </ScrollView>
-
     <EditText
         android:id="@+id/msgEtext"
         android:layout_width="353dp"
@@ -72,5 +63,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_send"
         android:background="@color/blackLight"/>
+
+    <LinearLayout
+        android:id="@+id/chatLayout"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/msgEtext"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

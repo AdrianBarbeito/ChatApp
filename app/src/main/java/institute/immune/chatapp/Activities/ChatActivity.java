@@ -9,21 +9,24 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import institute.immune.chatapp.R;
 import institute.immune.chatapp.Services.Bot;
+import institute.immune.chatapp.Services.Bot2;
+import institute.immune.chatapp.Services.Bot3;
 
 public class ChatActivity extends AppCompatActivity {
     private ImageView profileImage;
-    private TextView nickNameTView;
-    private ScrollView scrollChat;
+    private TextView nickNameTView, sendTView, receivedTView;;
     private EditText writeInput;
     private ImageButton sendBt;
 
-    private Boolean firstMsg;
-    private int ids;
+    //Replicar converstions pero para mensajes
+    LinearLayout messageFrame;
+    View sentmessage, receivedmessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,52 +34,58 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         bindings();
-        firstMsg = true;
-        ids = -1;
-        Bot.setupdateListener(this);
-        Intent intentService = new Intent(this, Bot.class);
-        startService(intentService);
+
+        selectBot();
     }
 
+public void selectBot(){
+    Intent intentService = null;
+    Integer id = getIntent().getIntExtra("idText", 0);
+
+    switch (id) {
+        case R.id.politicTview:
+            intentService = new Intent(this, Bot.class);
+            break;
+        case R.id.sportsTview:
+            intentService = new Intent(this, Bot2.class);
+            break;
+        case R.id.moviesTview:
+            intentService = new Intent(this, Bot3.class);
+            break;
+    }
+    startService(intentService);
+}
     private void bindings(){
         profileImage = findViewById(R.id.imageUserChat);
         nickNameTView = findViewById(R.id.nicknameChat);
-        scrollChat = findViewById(R.id.scrollChat);
         writeInput = findViewById(R.id.msgEtext);
         sendBt = findViewById(R.id.sendBt);
+        sendBt.setOnClickListener(messageListener);
+        messageFrame = findViewById(R.id.chatLayout);
     }
 
     public void setChat(String nickname) {
         nickNameTView.setText(nickname);
     }
-
-    public void printMessage(String message, String position){
-        TextView msg = new TextView(this);
-        msg.setId(ids);
-        msg.setText(message);
-        msg.setBottom(scrollChat.getBottom());
-        if (firstMsg){
-            if (position.equalsIgnoreCase("right")){
-                msg.setBottom(scrollChat.getBottom());
-                msg.setRight(scrollChat.getRight());
-            } else if (position.equalsIgnoreCase("left")){
-                msg.setBottom(scrollChat.getBottom());
-                msg.setLeft(scrollChat.getLeft());
-            }
-            scrollChat.addView(msg);
-            ids--;
-        } else {
-            if (position.equalsIgnoreCase("right")){
-                msg.constraintTop_toBottomOf(ids);
-                msg.setRight(scrollChat.getRight());
-                scrollChat.addView(msg);
-            } else if (position.equalsIgnoreCase("left")){
-                msg.constraintTop_toBottomOf(ids);
-                msg.setLeft(scrollChat.getLeft());
-                scrollChat.addView(msg);
-            }
-            scrollChat.addView(msg);
-            ids--;
+    public View.OnClickListener messageListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            addMessages();
         }
+    };
+    public void addMessages(){
+        sentmessage = getLayoutInflater().inflate(R.layout.message_sent_layout, null, false);
+        receivedmessage = getLayoutInflater().inflate(R.layout.message_received_layout, null, false);
+
+        sendTView = sentmessage.findViewById(R.id.messagesent);
+        receivedTView = receivedmessage.findViewById(R.id.messagereceived);
+
+        sendTView.setText(writeInput.getText());
+        receivedTView.setText("Adios");
+
+        messageFrame.addView(sentmessage);
+        messageFrame.addView(receivedmessage);
+
     }
+
 }

@@ -85,7 +85,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     }
 
     public Integer countUsers(){
-        Cursor cursor = db.rawQuery("SELECT COUNT(_id) AS cuenta FROM user;", null);
+        Cursor cursor = db.rawQuery("SELECT COUNT(_id) AS cuenta FROM 'user';", null);
         cursor.moveToFirst();
 
         @SuppressLint("Range") Integer count = cursor.getInt(cursor.getColumnIndex("cuenta"));
@@ -99,7 +99,8 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         String[] args = new String[]{
                 category
         };
-        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE category = ?", args);
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE category == ?", args);
+
 
         if (cursor.getCount() > 0){
             cursor.moveToFirst();
@@ -166,7 +167,6 @@ public class MyOpenHelper extends SQLiteOpenHelper {
                 "movies",
                 "politic"
         };
-
         if (cursor.getCount() > 0){
             cursor.moveToFirst();
             do {

@@ -15,4 +15,5 @@
     <string name="editProfile">Edit Profile</string>
     <string name="confirm">Confirm</string>
     <string name="errorLogin">Error, some of the parameters are incorrect</string>
+    <string name="messages">messages</string>
 </resources>

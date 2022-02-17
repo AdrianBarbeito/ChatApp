@@ -132,7 +132,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                     break;
 
                 case R.id.consultaBt:
-                    intent = new Intent(view.getContext(), ConsultaActivity.class);
+                    intent = new Intent(view.getContext(), ConversationsActivity.class);
                     break;
             }
             startActivity(intent);

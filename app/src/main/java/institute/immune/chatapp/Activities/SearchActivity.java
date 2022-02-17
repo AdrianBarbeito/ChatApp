@@ -26,22 +26,9 @@ public class SearchActivity extends AppCompatActivity {
     public View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intentService = null;
-            Intent intentActivity = new Intent(view.getContext(), ChatActivity.class) ;
-
-            switch (view.getId()) {
-                case R.id.politicTview:
-                    intentService = new Intent(view.getContext(), Bot.class);
-                    break;
-                case R.id.sportsTview:
-                    intentService = new Intent(view.getContext(), Bot2.class);
-                    break;
-                case R.id.moviesTview:
-                    intentService = new Intent(view.getContext(), Bot3.class);
-                    break;
-            }
-            startService(intentService);
-            startActivity(intentActivity);
+            Intent intent = new Intent(view.getContext(), ChatActivity.class);
+            intent.putExtra("idText", (Integer) view.getId());
+            startActivity(intent);
         }
     };
 
@@ -54,8 +41,5 @@ public class SearchActivity extends AppCompatActivity {
         politicBt.setOnClickListener(listener);
         sportBt.setOnClickListener(listener);
         movieBt.setOnClickListener(listener);
-
-        Bot.setupdateListener(this);
-
     }
 }
