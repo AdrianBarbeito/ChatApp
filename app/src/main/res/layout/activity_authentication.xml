@@ -131,7 +131,8 @@
         android:layout_height="53dp"
         android:text="Consulta provisional"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/apiBt"
@@ -139,7 +140,8 @@
         android:layout_height="wrap_content"
         android:text="API"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/profileBt"
@@ -150,7 +152,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/SearchBt"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/apiBt" />
+        app:layout_constraintStart_toEndOf="@+id/apiBt"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/SearchBt"
@@ -159,6 +162,7 @@
         android:layout_marginEnd="16dp"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/consultaBt" />
+        app:layout_constraintEnd_toStartOf="@+id/consultaBt"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
