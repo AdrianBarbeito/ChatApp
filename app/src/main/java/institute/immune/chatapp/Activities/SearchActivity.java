@@ -10,18 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import institute.immune.chatapp.R;
-import institute.immune.chatapp.Services.Bot;
-import institute.immune.chatapp.Services.Bot2;
-import institute.immune.chatapp.Services.Bot3;
 
 public class SearchActivity extends AppCompatActivity {
     private TextView politicBt, sportBt, movieBt;
-    private FloatingActionButton buttonMenuSearch;
-    private MenuItem chatMenu, profileMenu;
-    MenuItem.OnMenuItemClickListener onMenuClickListener;
 
 
     @Override
@@ -36,12 +28,9 @@ public class SearchActivity extends AppCompatActivity {
         politicBt = findViewById(R.id.politicTview);
         sportBt = findViewById(R.id.sportsTview);
         movieBt = findViewById(R.id.moviesTview);
-        buttonMenuSearch = findViewById(R.id.buttonMenuSearch);
     }
 
     private void setListeners() {
-        buttonMenuSearch.setOnClickListener(menuCentralListener);
-        //chatMenu.setOnMenuItemClickListener(menuListener);
         politicBt.setOnClickListener(listener);
         sportBt.setOnClickListener(listener);
         movieBt.setOnClickListener(listener);

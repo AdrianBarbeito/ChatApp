@@ -14,7 +14,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import institute.immune.chatapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
-    private FloatingActionButton buttonMenuProfile;
     private MenuItem chatMenu, profileMenu;
 
     @Override
@@ -26,7 +25,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void bindings() {
-        buttonMenuProfile = findViewById(R.id.buttonMenuSearch);
         chatMenu = findViewById(R.id.itemChat);
         profileMenu = findViewById(R.id.itemPerson);
     }

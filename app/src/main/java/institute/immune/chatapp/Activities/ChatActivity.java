@@ -44,7 +44,15 @@ public class ChatActivity extends AppCompatActivity {
         selectBot();
     }
 
-public void selectBot(){
+    private void bindings(){
+        profileImage = findViewById(R.id.imageUserChat);
+        nickNameTView = findViewById(R.id.nicknameChat);
+        writeInput = findViewById(R.id.msgEtext);
+        sendBt = findViewById(R.id.sendBt);
+        sendBt.setOnClickListener(messageListener);
+        messageFrame = findViewById(R.id.chatLayout);
+    }
+    public void selectBot(){
     Intent intentService = null;
     Integer id = getIntent().getIntExtra("idText", 0);
 
@@ -61,14 +69,6 @@ public void selectBot(){
     }
     startService(intentService);
 }
-    private void bindings(){
-        profileImage = findViewById(R.id.imageUserChat);
-        nickNameTView = findViewById(R.id.nicknameChat);
-        writeInput = findViewById(R.id.msgEtext);
-        sendBt = findViewById(R.id.sendBt);
-        sendBt.setOnClickListener(messageListener);
-        messageFrame = findViewById(R.id.chatLayout);
-    }
 
     public void setChat(String nickname) {
         nickNameTView.setText(nickname);

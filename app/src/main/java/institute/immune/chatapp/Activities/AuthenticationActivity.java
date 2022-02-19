@@ -100,20 +100,18 @@ public class AuthenticationActivity extends AppCompatActivity {
     public View.OnClickListener switchToListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            nickNameInput.setVisibility(nickNameInput.getVisibility() > 0 ? View.VISIBLE : View.INVISIBLE);
             if (switchToBt.getText().toString().equalsIgnoreCase("sign in")){
-                nickNameInput.setVisibility(View.VISIBLE);
                 credentialsBt.setText(R.string.signIn);
                 switchToBt.setText(R.string.login);
                 accountQuestion.setText(R.string.alreadyAccount);
                 mensajeError.clearComposingText();
-                mensajeError.setText("");
             } else if (switchToBt.getText().toString().equalsIgnoreCase("login")){
-                nickNameInput.setVisibility(View.INVISIBLE);
                 credentialsBt.setText(R.string.login);
                 switchToBt.setText(R.string.signIn);
                 accountQuestion.setText(R.string.createAccount);
-                mensajeError.setText("");
             }
+            mensajeError.setText("");
         }
     };
 
