@@ -13,7 +13,7 @@ import institute.immune.chatapp.R;
 public class ConversationsActivity extends AppCompatActivity {
     private LinearLayout messageFrame;
     private View converView;
-    private ImageButton searchCategoryBt;
+    private ImageButton searchCategoryBt, exitBt, profileBt;
 
     private int image, nickname, message;
     private int id = 0;
@@ -32,11 +32,14 @@ public class ConversationsActivity extends AppCompatActivity {
         converView = getLayoutInflater().inflate(R.layout.fragment_conversation, null, false);
         messageFrame = findViewById(R.id.messageFrame);
         searchCategoryBt = findViewById(R.id.searchCategoryBt);
+        exitBt = findViewById(R.id.exitMenu);
+        profileBt = findViewById(R.id.profileMenu);
     }
 
     private void setListener() {
-        converView.setOnClickListener(listenerChat);
         searchCategoryBt.setOnClickListener(listenerMenu);
+        exitBt.setOnClickListener(listenerMenu);
+        profileBt.setOnClickListener(listenerMenu);
     }
 
     public void OnClickView(View view){
@@ -59,6 +62,15 @@ public class ConversationsActivity extends AppCompatActivity {
             switch (view.getId()){
                 case R.id.searchCategoryBt:
                     intent = new Intent(view.getContext(), SearchActivity.class);
+                    break;
+
+                case R.id.exitMenu:
+                    intent = new Intent(view.getContext(), AuthenticationActivity.class);
+                    break;
+
+                case R.id.profileMenu:
+                    intent = new Intent(view.getContext(), ProfileActivity.class);
+                    break;
             }
             startActivity(intent);
         }
@@ -70,6 +82,7 @@ public class ConversationsActivity extends AppCompatActivity {
         buttonId = R.id.politicTview;
         converView.setId(buttonId);
         System.out.println(converView.getId());
+        converView.setOnClickListener(listenerChat);
     }
 
     public int findId(){

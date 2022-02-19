@@ -33,25 +33,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/search" />
 
-    <LinearLayout
-        android:id="@+id/messageFrame"
-        android:layout_width="405dp"
-        android:layout_height="582dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="76dp"
-        android:background="#302B2B"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Messages">
-
-        <FrameLayout
-            android:id="@+id/fragment"
-            android:layout_width="match_parent"
-            android:layout_height="18dp"
-            android:layout_marginTop="40dp">
-
-        </FrameLayout>
-    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView3"
@@ -67,7 +48,7 @@
         android:id="@+id/textView"
         android:layout_width="88dp"
         android:layout_height="34dp"
-        android:text="Recent"
+        android:text="@string/recent"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -87,16 +68,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/searchCategoryBt"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/messageFrame"
+        android:layout_width="match_parent"
+        android:layout_height="582dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="76dp"
+        android:background="#302B2B"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="25dp"
-        android:src="@drawable/ic_circle_plus_24"/>
+        app:layout_constraintTop_toBottomOf="@+id/Messages">
+
+        <FrameLayout
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_marginTop="40dp">
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/MenuBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/exitMenu"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-10dp"
+            android:src="@drawable/ic_login_24"/>
+
+        <ImageButton
+            android:id="@+id/searchCategoryBt"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:src="@drawable/ic_circle_plus_24"/>
+
+        <ImageButton
+            android:id="@+id/profileMenu"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:src="@drawable/person"/>
+
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
