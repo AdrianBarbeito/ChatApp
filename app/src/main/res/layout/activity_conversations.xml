@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/confirmBt"
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginTop="60dp"
