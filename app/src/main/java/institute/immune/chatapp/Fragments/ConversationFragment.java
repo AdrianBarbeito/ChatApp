@@ -74,8 +74,8 @@ public class ConversationFragment extends Fragment {
     }
 
     private void bindings(View view) {
-    nickname =  view.findViewById(R.id.convername);
+    nickname =  view.findViewById(R.id.converName);
     profileImg = view.findViewById(R.id.converimg);
-    message = view.findViewById(R.id.convertext);
+    message = view.findViewById(R.id.converText);
     }
 }

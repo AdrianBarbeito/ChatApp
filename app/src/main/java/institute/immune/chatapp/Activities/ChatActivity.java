@@ -44,6 +44,26 @@ public class ChatActivity extends AppCompatActivity {
         selectBot();
     }
 
+public void selectBot(){
+    Intent intentService = null;
+    Integer id = getIntent().getIntExtra("id", 0);
+    String category = getIntent().getStringExtra("category");
+
+    switch (category) {
+        case "Politic":
+            intentService = new Intent(this, Bot.class);
+            break;
+        case "Sports":
+            intentService = new Intent(this, Bot2.class);
+            break;
+        case "Movies":
+            intentService = new Intent(this, Bot3.class);
+            break;
+
+    }
+    nickNameTView.setText(category);
+    startService(intentService);
+}
     private void bindings(){
         profileImage = findViewById(R.id.imageUserChat);
         nickNameTView = findViewById(R.id.nicknameChat);
@@ -52,27 +72,11 @@ public class ChatActivity extends AppCompatActivity {
         sendBt.setOnClickListener(messageListener);
         messageFrame = findViewById(R.id.chatLayout);
     }
-    public void selectBot(){
-    Intent intentService = null;
-    Integer id = getIntent().getIntExtra("idText", 0);
-
-    switch (id) {
-        case R.id.politicTview:
-            intentService = new Intent(this, Bot.class);
-            break;
-        case R.id.sportsTview:
-            intentService = new Intent(this, Bot2.class);
-            break;
-        case R.id.moviesTview:
-            intentService = new Intent(this, Bot3.class);
-            break;
-    }
-    startService(intentService);
-}
 
     public void setChat(String nickname) {
         nickNameTView.setText(nickname);
     }
+
     public View.OnClickListener messageListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -87,10 +91,13 @@ public class ChatActivity extends AppCompatActivity {
         receivedTView = receivedmessage.findViewById(R.id.messagereceived);
 
         sendTView.setText(writeInput.getText());
-        receivedTView.setText("Adios");
+        receivedTView.setText(chatWord(writeInput.getText().toString()));
 
         messageFrame.addView(sentmessage);
         messageFrame.addView(receivedmessage);
+    }
 
+    private String chatWord(String word) {
+        return word;
     }
 }

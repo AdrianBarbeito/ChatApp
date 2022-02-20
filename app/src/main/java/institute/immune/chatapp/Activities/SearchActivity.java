@@ -10,19 +10,37 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import institute.immune.chatapp.R;
 
 public class SearchActivity extends AppCompatActivity {
     private TextView politicBt, sportBt, movieBt;
-
+   private ArrayList<Integer> conversId;
+   private  ArrayList<String> conversCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        conversCategory= getIntent().getStringArrayListExtra("conversCategory");
+        conversId = getIntent().getIntegerArrayListExtra("conversId");
         bindings();
         setListeners();
     }
+    public View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(view.getContext(), ConversationsActivity.class);
+            TextView clicked = findViewById(view.getId());
+            intent.putIntegerArrayListExtra("conversId", conversId);
+            intent.putStringArrayListExtra("conversCategory", conversCategory);
+            intent.putExtra("category",  clicked.getText());
+            intent.putExtra("id", 0);
+            startActivity(intent);
+        }
+    };
+
 
     private void bindings(){
         politicBt = findViewById(R.id.politicTview);
@@ -44,53 +62,6 @@ public class SearchActivity extends AppCompatActivity {
         return true;
     }
 
-    public View.OnClickListener menuCentralListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
 
-        }
-    };
 
-    public MenuItem.OnMenuItemClickListener menuListener = new MenuItem.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            Intent intent = null;
-            switch (menuItem.getItemId()){
-                case R.id.itemChat:
-                    intent = new Intent(menuItem.getActionView().getContext(), ChatActivity.class);
-                    break;
-
-                case R.id.itemPerson:
-                    intent = new Intent(menuItem.getActionView().getContext(), ProfileActivity.class);
-                    break;
-            }
-            startActivity(intent);
-            return false;
-        }
-    };
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = null;
-        switch (item.getItemId()){
-            case R.id.itemChat:
-                intent = new Intent(this, ChatActivity.class);
-                break;
-
-            case R.id.itemPerson:
-                intent = new Intent(this, ProfileActivity.class);
-                break;
-        }
-        startActivity(intent);
-        return super.onOptionsItemSelected(item);
-    }
-
-    public View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(view.getContext(), ChatActivity.class);
-            intent.putExtra("idText", (Integer) view.getId());
-            startActivity(intent);
-        }
-    };
 }
