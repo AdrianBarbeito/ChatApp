@@ -25,12 +25,11 @@ import institute.immune.chatapp.Services.Bot2;
 import institute.immune.chatapp.Services.Bot3;
 
 public class ChatActivity extends AppCompatActivity {
+    Intent intentService = null;
     private ImageView profileImage;
     private TextView nickNameTView, sendTView, receivedTView;;
     private EditText writeInput;
     private ImageButton sendBt;
-
-    //Replicar converstions pero para mensajes
     LinearLayout messageFrame;
     View sentmessage, receivedmessage;
 
@@ -44,11 +43,21 @@ public class ChatActivity extends AppCompatActivity {
         selectBot();
     }
 
-public void selectBot(){
-    Intent intentService = null;
-    Integer id = getIntent().getIntExtra("id", 0);
-    String category = getIntent().getStringExtra("category");
+    private void bindings(){
+        profileImage = findViewById(R.id.imageUserChat);
+        nickNameTView = findViewById(R.id.nicknameChat);
+        writeInput = findViewById(R.id.msgEtext);
+        sendBt = findViewById(R.id.sendBt);
+        sendBt.setOnClickListener(messageListener);
+        messageFrame = findViewById(R.id.chatLayout);
+    }
+    /**
+     * Recoge la categoría para elegir el bot correspondiente (futuro usuario online)
+     * Establece el nombre del contacto con la categoría ya que se tratan de bots, pero se podría cambiar por el nombre del usuario.
+     */
+    public void selectBot(){
 
+    String category = getIntent().getStringExtra("category");
     switch (category) {
         case "Politic":
             intentService = new Intent(this, Bot.class);
@@ -64,25 +73,20 @@ public void selectBot(){
     nickNameTView.setText(category);
     startService(intentService);
 }
-    private void bindings(){
-        profileImage = findViewById(R.id.imageUserChat);
-        nickNameTView = findViewById(R.id.nicknameChat);
-        writeInput = findViewById(R.id.msgEtext);
-        sendBt = findViewById(R.id.sendBt);
-        sendBt.setOnClickListener(messageListener);
-        messageFrame = findViewById(R.id.chatLayout);
-    }
 
-    public void setChat(String nickname) {
-        nickNameTView.setText(nickname);
-    }
-
+    /**
+     * Cuando se envía un mensaje llama a la función añadir mensaje
+     */
     public View.OnClickListener messageListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             addMessages();
         }
     };
+
+    /**
+     * Envia el mensaje escrito y eañade el de respuesta
+     */
     public void addMessages(){
         sentmessage = getLayoutInflater().inflate(R.layout.message_sent_layout, null, false);
         receivedmessage = getLayoutInflater().inflate(R.layout.message_received_layout, null, false);
@@ -97,7 +101,13 @@ public void selectBot(){
         messageFrame.addView(receivedmessage);
     }
 
+    /**
+     * Devuelve el mensaje enviado, en un futuro debería cambiarse por una conversación desarrollada con el bot u otro usuario.
+     * @param word
+     * @return
+     */
     private String chatWord(String word) {
+        //Aqui se debería hacer la logíca para saber la respuesta y entonces hacer el return
         return word;
     }
 }

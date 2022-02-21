@@ -20,8 +20,8 @@ public class Bot extends Service {
     private static ConversationsActivity listenerConversations;
     @Override
     public void onCreate() {
-        db = new MyOpenHelper(this);
         super.onCreate();
+        db = new MyOpenHelper(this);
         bot = randomUser();
     }
     public User randomUser(){

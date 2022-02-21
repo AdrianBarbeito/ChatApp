@@ -44,6 +44,11 @@ public class ConversationsActivity extends AppCompatActivity {
         profileBt = findViewById(R.id.profileMenu);
     }
 
+    /**
+     * Añade una view con un layout predefinido cambiando sus valores
+     * @param category la categoria del bot de la conversación
+     * @param Id id de la conversacióm
+     */
     public void addconver(String category, int Id){
         converView = getLayoutInflater().inflate(R.layout.fragment_conversation, null, false);
         converNickName = converView.findViewById(R.id.converName);
@@ -55,6 +60,9 @@ public class ConversationsActivity extends AppCompatActivity {
         converView.setOnClickListener(listenerChat);
     }
 
+    /**
+     * Guarda las conversaciones en una lista para volver a hablar
+     */
     public void addConverToList(){
         if (getIntent().getStringExtra("category")!= null){
             conversCategory= getIntent().getStringArrayListExtra("conversCategory");
@@ -66,6 +74,9 @@ public class ConversationsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Crea la cantidad de conversaciones que hay  en la lista
+     */
     private void setConvers() {
         for (int x = 0; x < conversCategory.size(); x++){
             addconver(conversCategory.get(x), conversId.get(x));
@@ -86,12 +97,13 @@ public class ConversationsActivity extends AppCompatActivity {
             Intent intent = new Intent(view.getContext(), ChatActivity.class);
             converView = findViewById(view.getId());
             converNickName = view.findViewById(R.id.converName);
-            intent.putExtra("id", converView.getId());
             intent.putExtra("category", converNickName.getText());
             startActivity(intent);
         }
     };
-
+    /**
+     * Menu de navegación
+     */
     public View.OnClickListener listenerMenu = new View.OnClickListener() {
         @Override
         public void onClick(View view) {

@@ -16,18 +16,30 @@ import institute.immune.chatapp.R;
 
 public class SearchActivity extends AppCompatActivity {
     private TextView politicBt, sportBt, movieBt;
-   private ArrayList<Integer> conversId;
-   private  ArrayList<String> conversCategory;
+    private ArrayList<Integer> conversId;
+    private  ArrayList<String> conversCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        conversCategory= getIntent().getStringArrayListExtra("conversCategory");
-        conversId = getIntent().getIntegerArrayListExtra("conversId");
+
         bindings();
         setListeners();
     }
+
+    /**
+     * Recoge las conversaciones anteriores para mantenerlas mientras se ejecute la app.
+     */
+    public void recoverConvers(){
+        conversCategory = getIntent().getStringArrayListExtra("conversCategory");
+        conversId = getIntent().getIntegerArrayListExtra("conversId");
+    }
+
+    /**
+     * Función que detecta la categoría elegida y lo guarda en el intent para pasarselo a ConversationsActivity
+     * Le vuelve a pasar las listas para mantenerlas actualizadas
+     */
     public View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {

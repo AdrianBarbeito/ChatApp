@@ -2,6 +2,7 @@ package institute.immune.chatapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.people.ConversationStatus;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         bindings();
         setListeners();
+        //db.RandomDb();
     }
 
     private void bindings() {
@@ -63,14 +65,14 @@ public class AuthenticationActivity extends AppCompatActivity {
     private void setListeners() {
         credentialsBt.setOnClickListener(credentialsListener);
         switchToBt.setOnClickListener(switchToListener);
-
-        consultaBt.setOnClickListener(consultaListener);
-        profileBt.setOnClickListener(consultaListener);
-        searchBt.setOnClickListener(consultaListener);
         apiBt.setOnClickListener(apiListener);
-
     }
 
+    /**
+     * Recoge los datos introducidos:
+     * En caso de register, añade los datos a la BBDD con la contraseña cifrada
+     * En caso de login busca el email introducido y comprueba la contraseña
+     */
     public View.OnClickListener credentialsListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -108,7 +110,9 @@ public class AuthenticationActivity extends AppCompatActivity {
             }
         }
     };
-
+    /**
+     * Cambia la funcionalidad del AuthenticationActivity para servir como login o register dependiendo de su estado, cuando esta en login el campo nickName no se requerira.
+     */
     public View.OnClickListener switchToListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -129,27 +133,6 @@ public class AuthenticationActivity extends AppCompatActivity {
         }
     };
 
-    public View.OnClickListener consultaListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = null;
-            switch (view.getId()){
-
-                case R.id.SearchBt:
-                    intent = new Intent(view.getContext(), SearchActivity.class);
-                    break;
-
-                case R.id.profileBt:
-                    intent = new Intent(view.getContext(), ProfileActivity.class);
-                    break;
-
-                case R.id.consultaBt:
-                    intent = new Intent(view.getContext(), ConsultaActivity.class);
-                    break;
-            }
-            startActivity(intent);
-        }
-    };
 
     public View.OnClickListener apiListener = new View.OnClickListener() {
         @Override
