@@ -54,14 +54,6 @@ public class SearchActivity extends AppCompatActivity {
         movieBt.setOnClickListener(listener);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_chatapp, menu);
-        return true;
-    }
-
 
 
 }

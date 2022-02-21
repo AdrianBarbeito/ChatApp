@@ -2,7 +2,6 @@ package institute.immune.chatapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.people.ConversationStatus;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,25 +28,25 @@ import institute.immune.chatapp.R;
 
 public class AuthenticationActivity extends AppCompatActivity {
     private MyOpenHelper db;
-    private TextView accountQuestion, mensajeError, credentialsText;
+    private TextView accountQuestion, errorMessage, credentialsText;
     private EditText nickNameInput, mailInput, passwordInput;
     private Button switchToBt, apiBt, profileBt, searchBt, consultaBt;
     private ImageButton credentialsBt;
+    private Integer idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
 
-        db = new MyOpenHelper(this);
         bindings();
         setListeners();
-        //db.RandomDb();
     }
 
     private void bindings() {
+        db = new MyOpenHelper(this);
         accountQuestion = findViewById(R.id.accountQuestion);
-        mensajeError = findViewById(R.id.mensajeError);
+        errorMessage = findViewById(R.id.errorMessage);
         nickNameInput = findViewById(R.id.nickNameInput);
         mailInput = findViewById(R.id.mailInput);
         passwordInput = findViewById(R.id.passwordInput);
@@ -75,22 +74,33 @@ public class AuthenticationActivity extends AppCompatActivity {
     public View.OnClickListener credentialsListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (credentialsText.getText().toString().equalsIgnoreCase("sign in")){
-                try {
-                    db.crearUsuario(nickNameInput.getText().toString(), mailInput.getText().toString(), passwordInput.getText().toString());
-                    Intent intent = new Intent(view.getContext(), ConversationsActivity.class);
-                    startActivity(intent);
-                } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-                    e.printStackTrace();
+            String nickName = nickNameInput.getText().toString();
+            String mail = mailInput.getText().toString();
+            String password = passwordInput.getText().toString();
+            if (credentialsText.getText().toString().equalsIgnoreCase("sign in")) {
+                if (!nickName.equalsIgnoreCase("") && !mail.equalsIgnoreCase("") && !password.equalsIgnoreCase("")){
+                    try {
+                        db.crearUsuario(nickName, mail, password);
+                        idUsuario = db.searchByMail(mail);
+                        Intent intent = new Intent(view.getContext(), ConversationsActivity.class);
+                        intent.putExtra("idUsuario", idUsuario);
+                        startActivity(intent);
+                    } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    errorMessage.setText(R.string.missingValues);
                 }
 
             } else if (credentialsText.getText().toString().equalsIgnoreCase("login")){
                 try {
-                    if (db.comprobarLogin(mailInput.getText().toString(), passwordInput.getText().toString())){
+                    if (db.comprobarLogin(mail, password)){
+                        idUsuario = db.searchByMail(mail);
                         Intent intent = new Intent(view.getContext(), ConversationsActivity.class);
+                        intent.putExtra("idUsuario", idUsuario);
                         startActivity(intent);
                     } else {
-                        mensajeError.setText(R.string.errorLogin);
+                        errorMessage.setText(R.string.errorLogin);
                     }
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
@@ -107,14 +117,14 @@ public class AuthenticationActivity extends AppCompatActivity {
                 credentialsText.setText(R.string.signIn);
                 switchToBt.setText(R.string.login);
                 accountQuestion.setText(R.string.alreadyAccount);
-                mensajeError.clearComposingText();
+                errorMessage.clearComposingText();
 
             } else if (switchToBt.getText().toString().equalsIgnoreCase("login")){
                 credentialsText.setText(R.string.login);
                 switchToBt.setText(R.string.signIn);
                 accountQuestion.setText(R.string.createAccount);
             }
-            mensajeError.setText("");
+            errorMessage.setText("");
 
         }
     };
@@ -134,7 +144,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                     break;
 
                 case R.id.consultaBt:
-                    intent = new Intent(view.getContext(), ConversationsActivity.class);
+                    intent = new Intent(view.getContext(), ConsultaActivity.class);
                     break;
             }
             startActivity(intent);
@@ -172,6 +182,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                 while ((line = rd.readLine()) != null) {
                     procesarJson(line);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

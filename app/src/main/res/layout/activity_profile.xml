@@ -8,18 +8,6 @@
     tools:context=".Activities.ProfileActivity">
 
 
-    <ImageButton
-        android:id="@+id/settings"
-        android:layout_width="60dp"
-        android:layout_height="59dp"
-        android:background="@drawable/settings5"
-        android:shape="oval"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.961"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp" />
-
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="155dp"
@@ -49,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
     <EditText
-        android:id="@+id/nickName"
+        android:id="@+id/nickNameProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -65,7 +53,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <EditText
-        android:id="@+id/mail"
+        android:id="@+id/mailProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -76,11 +64,21 @@
         android:ems="10"
         android:hint="@string/mail"
         android:padding="15dp"
-        app:layout_constraintTop_toBottomOf="@id/nickName"
+        app:layout_constraintTop_toBottomOf="@id/nickNameProfile"
         tools:layout_editor_absoluteX="0dp" />
 
+
+    <TextView
+        android:id="@+id/errorMessageProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/mailProfile"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/red" />
+
     <ImageButton
-        android:id="@+id/confirmBt"
+        android:id="@+id/confirmBtProfile"
         android:layout_width="164dp"
         android:layout_height="54dp"
         android:layout_marginTop="64dp"
@@ -88,20 +86,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mail" />
+        app:layout_constraintTop_toBottomOf="@id/mailProfile" />
 
     <TextView
-        android:id="@+id/confirm"
+        android:id="@+id/confirmText"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:text="Confirm"
+        android:text="@string/confirm"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/confirmBt"
-        app:layout_constraintEnd_toEndOf="@+id/confirmBt"
+        app:layout_constraintBottom_toBottomOf="@+id/confirmBtProfile"
+        app:layout_constraintEnd_toEndOf="@+id/confirmBtProfile"
         app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="@+id/confirmBt"
-        app:layout_constraintTop_toTopOf="@+id/confirmBt" />
+        app:layout_constraintStart_toStartOf="@+id/confirmBtProfile"
+        app:layout_constraintTop_toTopOf="@+id/confirmBtProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

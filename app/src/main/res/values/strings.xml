@@ -17,4 +17,6 @@
     <string name="errorLogin">Error, some of the parameters are incorrect</string>
     <string name="messages">messages</string>
     <string name="recent">Recent</string>
+    <string name="missingValues">Please introduce all de values required</string>
+    <string name="modified">Modified</string>
 </resources>

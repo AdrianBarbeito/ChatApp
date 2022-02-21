@@ -1,6 +1,5 @@
 package institute.immune.chatapp.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,30 +10,38 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Hashtable;
 
 import institute.immune.chatapp.R;
-import institute.immune.chatapp.Services.Bot;
 
 public class ConversationsActivity extends AppCompatActivity {
     private LinearLayout messageFrame;
     private View converView;
     private ImageButton searchCategoryBt, exitBt, profileBt;
-    TextView converNickName;
-    TextView converText;
+    private TextView converNickName;
+    private TextView converText;
     private int image, nickname, message, id, ButtonId;
     private  ArrayList<Integer> conversId = new ArrayList<Integer>();
     private  ArrayList<String> conversCategory  = new ArrayList<String>();
+
+    private Integer idUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversations);
+
         bindings();
         setListener();
         addConverToList();
         setConvers();
+    }
+
+    private void bindings() {
+        idUsuario = getIntent().getIntExtra("idUsuario", 0);
+        messageFrame = findViewById(R.id.messageFrame);
+        searchCategoryBt = findViewById(R.id.searchCategoryBt);
+        exitBt = findViewById(R.id.exitMenu);
+        profileBt = findViewById(R.id.profileMenu);
     }
 
     public void addconver(String category, int Id){
@@ -49,14 +56,13 @@ public class ConversationsActivity extends AppCompatActivity {
     }
 
     public void addConverToList(){
-        if (getIntent().getExtras()!= null){
+        if (getIntent().getStringExtra("category")!= null){
             conversCategory= getIntent().getStringArrayListExtra("conversCategory");
             conversId = getIntent().getIntegerArrayListExtra("conversId");
             String category = getIntent().getStringExtra("category");
             Integer id = getIntent().getIntExtra("id", 0);
             conversCategory.add(category);
             conversId.add(id);
-
         }
     }
 
@@ -66,13 +72,6 @@ public class ConversationsActivity extends AppCompatActivity {
         }
     }
 
-
-    private void bindings() {
-        messageFrame = findViewById(R.id.messageFrame);
-        searchCategoryBt = findViewById(R.id.searchCategoryBt);
-        exitBt = findViewById(R.id.exitMenu);
-        profileBt = findViewById(R.id.profileMenu);
-    }
 
     private void setListener() {
         searchCategoryBt.setOnClickListener(listenerMenu);
@@ -110,6 +109,7 @@ public class ConversationsActivity extends AppCompatActivity {
 
                 case R.id.profileMenu:
                     intent = new Intent(view.getContext(), ProfileActivity.class);
+                    intent.putExtra("idUsuario", idUsuario);
                     break;
             }
             startActivity(intent);

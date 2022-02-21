@@ -36,7 +36,6 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public void crearUsuario(String nickName, String mail, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         ContentValues cv = new ContentValues();
 
-
         cv.put("nickName", nickName);
         cv.put("mail", mail);
         cv.put("password", codificarPassword(password));
@@ -84,22 +83,27 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         return userList;
     }
 
-    public Integer countUsers(){
-        Cursor cursor = db.rawQuery("SELECT COUNT(_id) AS cuenta FROM 'user';", null);
-        cursor.moveToFirst();
-
-        @SuppressLint("Range") Integer count = cursor.getInt(cursor.getColumnIndex("cuenta"));
-        cursor.close();
-
-        return count;
+    @SuppressLint("Range")
+    public Integer searchByMail(String mail){
+        String[] args = new String[]{
+                mail
+        };
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE mail = ?", args);
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            return cursor.getInt(cursor.getColumnIndex("_id"));
+        }else{
+            return 1000;
+        }
     }
+
 
     public ArrayList<User> searchByCategory(String category){
         ArrayList<User> userList = new ArrayList<>();
         String[] args = new String[]{
                 category
         };
-        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE category == ?", args);
+        Cursor cursor = db.rawQuery("SELECT * FROM user WHERE category = ?", args);
 
 
         if (cursor.getCount() > 0){
@@ -144,17 +148,6 @@ public class MyOpenHelper extends SQLiteOpenHelper {
                 String.valueOf(id)
         };
         cv.put("category", category);
-
-        db.update("user", cv, "_id = ?", args);
-    }
-
-    public void replaceOnline(int id, Boolean online){
-        ContentValues cv = new ContentValues();
-        String[] args = new String[]{
-                String.valueOf(id)
-        };
-        if (online){ cv.put("online", 1); }
-        else { cv.put("online", 0); }
 
         db.update("user", cv, "_id = ?", args);
     }
