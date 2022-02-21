@@ -13,14 +13,13 @@
         android:layout_width="155dp"
         android:layout_height="162dp"
         android:background="@drawable/gradient_empty"
-        android:src="@drawable/person4"
+        android:src="@drawable/person"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:srcCompat="@drawable/person" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/editProfile"

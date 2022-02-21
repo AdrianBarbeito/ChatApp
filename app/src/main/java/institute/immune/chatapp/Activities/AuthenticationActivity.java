@@ -31,7 +31,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     private MyOpenHelper db;
     private TextView accountQuestion, errorMessage, credentialsText;
     private EditText nickNameInput, mailInput, passwordInput;
-    private Button switchToBt, apiBt, profileBt, searchBt, consultaBt;
+    private Button switchToBt, apiBt;
     private ImageButton credentialsBt;
     private Integer idUsuario;
 
@@ -42,7 +42,6 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         bindings();
         setListeners();
-        //db.RandomDb();
     }
 
     private void bindings() {
@@ -56,10 +55,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         credentialsBt = findViewById(R.id.credentialsBt);
         switchToBt = findViewById(R.id.switchToBt);
 
-        consultaBt = findViewById(R.id.consultaBt);
         apiBt = findViewById(R.id.apiBt);
-        profileBt = findViewById(R.id.profileBt);
-        searchBt = findViewById(R.id.SearchBt);
     }
 
     private void setListeners() {
