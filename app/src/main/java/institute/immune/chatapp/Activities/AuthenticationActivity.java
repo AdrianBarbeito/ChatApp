@@ -141,7 +141,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
 
     /**
-     * Conexión con API
+     *  Conexión con API
      */
     private class HTTPReqTask extends AsyncTask<Void, Void, Void> {
         @Override
