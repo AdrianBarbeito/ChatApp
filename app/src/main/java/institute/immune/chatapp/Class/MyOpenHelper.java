@@ -7,6 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import org.json.JSONObject;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
@@ -154,6 +159,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public void RandomDb(){
+        int x = 0;
         Cursor cursor = db.rawQuery("SELECT * FROM user", null);
         String[] categories = new String[]{
                 "sport",
@@ -163,12 +169,26 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         if (cursor.getCount() > 0){
             cursor.moveToFirst();
             do {
-                replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), categories[(int) Math.round( Math.random() * (categories.length -1))]);
-
+                if (x == 0){
+                    replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), "politic");
+                }
+                if (x == 1){
+                    replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), "sport");
+                }
+                if (x == 2){
+                    replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), "movies");
+                }
+                else {
+                    replaceCategory(cursor.getInt(cursor.getColumnIndex("_id")), categories[(int) Math.round(Math.random() * (categories.length - 1))]);
+                }
+                x+=1;
             } while (cursor.moveToNext());
         }
         cursor.close();
     }
+
+
+
 
     public String codificarPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-1");

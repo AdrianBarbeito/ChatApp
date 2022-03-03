@@ -3,15 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.12" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3575" />
         <entry key="app/src/main/res/drawable/border_button.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/border_text.xml" value="0.19" />
         <entry key="app/src/main/res/drawable/email.xml" value="0.132" />
         <entry key="app/src/main/res/drawable/face.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/facebook.xml" value="0.1925" />
+        <entry key="app/src/main/res/drawable/facebook.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/gradient_empty.xml" value="0.3" />
         <entry key="app/src/main/res/drawable/gradient_purple.xml" value="0.2335" />
-        <entry key="app/src/main/res/drawable/facebook.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_alternate_email_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_local_car_wash_24.xml" value="0.3575" />
         <entry key="app/src/main/res/drawable/ic_circle_plus_24.xml" value="0.1925" />
@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/logo_background.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/logo_foreground.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/ock_24.xml" value="0.3575" />
+        <entry key="app/src/main/res/drawable/person.xml" value="0.1415" />
         <entry key="app/src/main/res/drawable/person_24.xml" value="0.3575" />
         <entry key="app/src/main/res/layout/Menu.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/activity_authentication.xml" value="0.18" />

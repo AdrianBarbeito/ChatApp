@@ -39,10 +39,11 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
-
         bindings();
         setListeners();
     }
+
+
 
     private void bindings() {
         db = new MyOpenHelper(this);
@@ -134,6 +135,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             new HTTPReqTask().execute();
+            db.RandomDb();
         }
     };
 
